@@ -52,7 +52,6 @@ onMounted(() => {
     <div class="container">
       <!-- 区块标题 -->
       <div class="section-header">
-        <span class="section-tag">{{ t('tech.tag') }}</span>
         <h2 class="section-title">{{ t('tech.title1') }} <span class="text-accent">{{ t('tech.title2') }}</span></h2>
         <p class="section-desc">
           {{ t('tech.desc') }}
@@ -99,16 +98,6 @@ onMounted(() => {
 .section-header {
   text-align: center;
   margin-bottom: var(--space-4xl);
-}
-
-/* "// TECH_STACK" 小标签 */
-.section-tag {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-  letter-spacing: 3px;
-  display: block;
-  margin-bottom: var(--space-md);
 }
 
 /* "CORE TECHNOLOGIES" 大标题 */

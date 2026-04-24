@@ -132,7 +132,6 @@ onBeforeUnmount(() => {
 
     <div class="page-hero glass-hero">
       <div class="container">
-        <span class="page-tag">{{ t('skills.tag') }}</span>
         <h1 class="page-title">{{ t('skills.title1') }} <span class="text-accent">{{ t('skills.title2') }}</span></h1>
         <p class="page-desc">{{ t('skills.desc') }}</p>
       </div>
@@ -192,15 +191,6 @@ onBeforeUnmount(() => {
   background: rgba(10, 10, 10, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-}
-
-.page-tag {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-  letter-spacing: 3px;
-  display: block;
-  margin-bottom: var(--space-md);
 }
 
 .page-title {

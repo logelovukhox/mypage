@@ -159,7 +159,6 @@ onBeforeUnmount(() => {
 
     <div class="page-hero glass-hero">
       <div class="container">
-        <span class="page-tag">{{ t('network.tag') }}</span>
         <h1 class="page-title">{{ t('network.title1') }} <span class="text-accent">{{ t('network.title2') }}</span></h1>
         <p class="page-desc">{{ t('network.desc') }}</p>
       </div>
@@ -264,7 +263,6 @@ onBeforeUnmount(() => {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-.page-tag { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-accent); letter-spacing: 3px; display: block; margin-bottom: var(--space-md); }
 .page-title { font-size: clamp(2rem, 7vw, 3.5rem); font-weight: 900; letter-spacing: 2px; margin-bottom: var(--space-md); text-shadow: 0 0 20px rgba(100, 255, 218, 0.2); }
 .page-desc { font-size: var(--text-lg); color: var(--color-text-secondary); max-width: 500px; }
 .page-content { padding: var(--space-4xl) var(--space-xl); }

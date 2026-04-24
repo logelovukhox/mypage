@@ -50,7 +50,6 @@ const contactInfo = computed(() => [
     <!-- ===== 页面顶部 Hero 区域 ===== -->
     <div class="page-hero">
       <div class="container">
-        <span class="page-tag">{{ t('contact.tag') }}</span>
         <h1 class="page-title">{{ t('contact.title1') }} <span class="text-accent">{{ t('contact.title2') }}</span></h1>
         <p class="page-desc">{{ t('contact.desc') }}</p>
       </div>
@@ -173,16 +172,6 @@ const contactInfo = computed(() => [
   padding: 140px 0 60px;           /* 上方140px给导航栏留空间 */
   background: var(--color-bg-secondary);
   border-bottom: 1px solid var(--color-border);
-}
-
-/* "// CONTACT" 小标签 */
-.page-tag {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-  letter-spacing: 3px;
-  display: block;
-  margin-bottom: var(--space-md);
 }
 
 /* 页面大标题 */

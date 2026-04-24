@@ -223,7 +223,6 @@ onBeforeUnmount(() => {
 
     <div class="page-hero glass-hero">
       <div class="container">
-        <span class="page-tag">{{ t('repo.tag') }}</span>
         <h1 class="page-title">{{ t('repo.title1') }} <span class="text-accent">{{ t('repo.title2') }}</span></h1>
         <p class="page-desc">{{ t('repo.desc') }}</p>
       </div>
@@ -283,15 +282,6 @@ onBeforeUnmount(() => {
   background: rgba(10, 10, 10, 0.55);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-}
-
-.page-tag {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: #63b3ed; /* 蓝色标签 */
-  letter-spacing: 3px;
-  display: block;
-  margin-bottom: var(--space-md);
 }
 
 .page-title {

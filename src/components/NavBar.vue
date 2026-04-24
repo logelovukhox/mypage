@@ -82,8 +82,10 @@ onUnmounted(() => {
 
       <!-- 联系按钮 - 跳转到联系页面 -->
       <div class="nav-actions">
-        <button class="lang-toggle" @click="toggleLanguage">
-          {{ locale === 'en' ? '中' : 'EN' }}
+        <button class="lang-toggle" @click="toggleLanguage" :aria-label="locale === 'en' ? '切换到中文' : 'Switch to English'">
+          <span class="lang-current">{{ locale === 'en' ? 'EN' : '中' }}</span>
+          <span class="lang-divider">/</span>
+          <span class="lang-next">{{ locale === 'en' ? '中' : 'EN' }}</span>
         </button>
         <router-link to="/contact" class="contact-btn" id="contact-btn">
           {{ t('nav.contact') }}<span class="contact-code"></span>
@@ -188,9 +190,9 @@ onUnmounted(() => {
 
 .nav-link {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 1.5px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: 0;
   color: var(--color-text-secondary); /* 默认灰色 */
   transition: color var(--transition-fast);
   position: relative;
@@ -229,21 +231,34 @@ onUnmounted(() => {
 
 .lang-toggle {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: 0.86rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   background: transparent;
-  border: 1px solid var(--color-text-secondary);
+  border: 0;
   border-radius: var(--radius-sm);
-  padding: 4px 8px;
+  padding: 6px 2px;
   cursor: pointer;
-  transition: all var(--transition-base);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition-base), opacity var(--transition-base);
 }
 
 .lang-toggle:hover {
-  color: var(--color-text-primary);
-  border-color: var(--color-accent);
-  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+}
+
+.lang-current {
+  color: var(--color-text-secondary);
+}
+
+.lang-divider {
+  color: var(--color-border-accent);
+}
+
+.lang-next {
+  color: inherit;
 }
 
 /* ========== 联系按钮 ========== */

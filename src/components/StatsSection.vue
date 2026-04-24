@@ -46,10 +46,8 @@ onMounted(() => {
 <template>
   <section class="stats section" id="stats-section">
     <div class="container">
-      <!-- 区块分隔标题 - 两侧渐变线 + 中间标签 -->
+      <!-- 区块分隔线 -->
       <div class="section-divider">
-        <div class="divider-line"></div>
-        <span class="divider-label">{{ t('stats.metrics') }}</span>
         <div class="divider-line"></div>
       </div>
 
@@ -84,12 +82,10 @@ onMounted(() => {
   border-bottom: 1px solid var(--color-border);
 }
 
-/* ========== 分隔标题样式 ========== */
-/* 布局：左线 | 标签 | 右线 */
+/* ========== 分隔线样式 ========== */
 .section-divider {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
   margin-bottom: var(--space-3xl);
 }
 
@@ -98,20 +94,6 @@ onMounted(() => {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, var(--color-border-accent), transparent);
-}
-
-/* 右侧渐变线 - 从透明渐变到橙色（方向相反） */
-.divider-line:last-child {
-  background: linear-gradient(270deg, var(--color-border-accent), transparent);
-}
-
-/* 中间标签文字 */
-.divider-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-  letter-spacing: 3px;
-  white-space: nowrap;         /* 不换行 */
 }
 
 /* ========== 四栏统计网格 ========== */

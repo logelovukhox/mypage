@@ -21,21 +21,18 @@ const features = computed(() => [
     icon: '⚡',
     title: t('features.card1.title'),
     description: t('features.card1.desc'),
-    tag: t('features.card1.tag'),
     color: '#ff6b2b',      // 深橙色
   },
   {
     icon: '🧠',
     title: t('features.card2.title'),
     description: t('features.card2.desc'),
-    tag: t('features.card2.tag'),
     color: '#ff8c55',      // 中橙色
   },
   {
     icon: '🔧',
     title: t('features.card3.title'),
     description: t('features.card3.desc'),
-    tag: t('features.card3.tag'),
     color: '#ffaa77',      // 浅橙色
   },
 ])
@@ -82,11 +79,6 @@ onMounted(() => {
           <!-- 卡片内容 -->
           <h3 class="feature-title">{{ feature.title }}</h3>
           <p class="feature-desc">{{ feature.description }}</p>
-
-          <!-- 底部标签（模块编号） -->
-          <div class="feature-tag">
-            <span class="tag-text" :style="{ color: feature.color }">{{ feature.tag }}</span>
-          </div>
 
           <!-- 悬停发光效果覆盖层 -->
           <div class="card-hover-glow"></div>
@@ -219,17 +211,6 @@ onMounted(() => {
   color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-xl);
-}
-
-/* ========== 底部标签 ========== */
-.feature-tag {
-  margin-top: auto;
-}
-
-.tag-text {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 2px;
 }
 
 /* ========== 响应式 ========== */

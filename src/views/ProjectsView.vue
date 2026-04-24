@@ -241,10 +241,6 @@ const setFilter = (id) => {
   activeFilter.value = id
 }
 
-// ============================================================
-// 当前系统时间（显示在 Hero 区域右侧）
-// ============================================================
-const systemStatus = 'ALL_SYSTEMS_OPERATIONAL'
 </script>
 
 <template>
@@ -260,18 +256,9 @@ const systemStatus = 'ALL_SYSTEMS_OPERATIONAL'
       <div class="hero-inner container">
         <!-- 左侧：标题区块 -->
         <div class="hero-left">
-          <span class="breadcrumb">{{ t('projects.bread') }}</span>
           <h1 class="hero-title">{{ t('projects.title1') }}<span class="accent">{{ t('projects.title2') }}</span></h1>
           <!-- 标题底部橙色横线 -->
           <div class="title-bar"></div>
-        </div>
-
-        <!-- 右侧：坐标 + 状态 -->
-        <div class="hero-meta">
-          <p class="coords">LAT: 40.7128° N // LON: 74.0060° W</p>
-          <p class="status-line">
-            STATUS: <span class="status-value">{{ systemStatus }}</span>
-          </p>
         </div>
       </div>
     </section>
@@ -426,17 +413,6 @@ const systemStatus = 'ALL_SYSTEMS_OPERATIONAL'
   flex: 1;
 }
 
-/* 面包屑路径 */
-.breadcrumb {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 3px;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-md);
-  text-transform: uppercase;
-}
-
 /* 大标题 */
 .hero-title {
   font-family: var(--font-mono);
@@ -460,30 +436,6 @@ const systemStatus = 'ALL_SYSTEMS_OPERATIONAL'
   height: 3px;
   background: var(--color-accent);
   margin-top: var(--space-sm);
-}
-
-/* 右侧坐标 + 状态元 */
-.hero-meta {
-  text-align: right;
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  line-height: 2;
-  letter-spacing: 1px;
-  flex-shrink: 0;
-}
-
-.coords {
-  color: var(--color-text-muted);
-}
-
-.status-line {
-  color: var(--color-text-muted);
-}
-
-/* 绿色状态值 */
-.status-value {
-  color: #4ade80;
-  font-weight: 700;
 }
 
 /* ============================================================
@@ -572,9 +524,6 @@ const systemStatus = 'ALL_SYSTEMS_OPERATIONAL'
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-lg);
-  }
-  .hero-meta {
-    text-align: left;
   }
   .filter-bar {
     overflow-x: auto;
