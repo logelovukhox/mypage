@@ -135,9 +135,9 @@ const messages = {
     },
     skills: {
       tag: '// SKILLS',
-      title1: 'TECH',
-      title2: 'MANIFESTO',
-      desc: 'Deep dive into my technical capabilities and expertise areas.',
+      title1: 'AI',
+      title2: 'AGENT SKILLS',
+      desc: 'Agent architecture, tool calling, RAG workflows, automation, and evaluation practices.',
       status: 'MANIFESTO_STATUS: COMPILING',
       underConst: 'This section is currently under construction.',
       scanning: 'scanning skill modules...'
@@ -233,7 +233,7 @@ const messages = {
       subjPlaceholder: '有关什么事？',
       msgLabel: '内容_',
       msgPlaceholder: '写下您的留言...',
-      transmit: '发送_留言',
+      transmit: '发送留言',
       transmitting: '正在发送...',
       msgSent: '留言_已发送',
       msgSentDesc: '您的留言已成功传送，我将在 24 小时内回复。',
@@ -277,9 +277,9 @@ const messages = {
     },
     skills: {
       tag: '// 技能',
-      title1: '技术',
-      title2: '宣言',
-      desc: '深入探索我的技术能力与专长领域。',
+      title1: 'AI',
+      title2: '智能体技能',
+      desc: '聚焦 Agent 架构、工具调用、RAG、自动化工作流与评测安全。',
       status: '宣言_状态：编译中',
       underConst: '该区块正在搭建。',
       scanning: '扫描技能模块中...'

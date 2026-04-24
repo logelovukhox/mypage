@@ -76,18 +76,6 @@ const contactInfo = computed(() => [
             </div>
           </div>
 
-          <!-- 社交链接按钮 - 替换href为你自己的链接 -->
-          <div class="social-links">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" id="social-github">
-              GitHub ↗
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" id="social-linkedin">
-              LinkedIn ↗
-            </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-link" id="social-twitter">
-              Twitter/X ↗
-            </a>
-          </div>
         </div>
 
         <!-- ===== 右侧：联系表单 ===== -->
@@ -234,6 +222,7 @@ const contactInfo = computed(() => [
   align-items: center;
   gap: var(--space-lg);
   padding: var(--space-lg);
+  min-height: 104px;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -262,29 +251,6 @@ const contactInfo = computed(() => [
 .info-value {
   font-size: var(--text-sm);
   color: var(--color-text-primary);
-}
-
-/* 社交链接按钮组 */
-.social-links {
-  display: flex;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.social-link {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  padding: var(--space-sm) var(--space-lg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-base);
-}
-
-.social-link:hover {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-  background: var(--color-accent-subtle);
 }
 
 /* ========== 右侧联系表单 ========== */
@@ -353,6 +319,7 @@ const contactInfo = computed(() => [
   font-size: var(--text-sm);
   font-weight: 700;
   letter-spacing: 2px;
+  min-height: 56px;
   padding: var(--space-md) var(--space-xl);
   background: var(--color-accent);         /* 橙色实心背景 */
   color: var(--color-bg-primary);          /* 深色文字 */
@@ -458,13 +425,5 @@ const contactInfo = computed(() => [
     font-size: var(--text-base);
   }
 
-  .social-links {
-    gap: var(--space-sm);
-  }
-
-  .social-link {
-    font-size: var(--text-xs);
-    padding: var(--space-xs) var(--space-md);
-  }
 }
 </style>

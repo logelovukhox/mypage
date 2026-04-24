@@ -43,9 +43,6 @@ onMounted(() => {
         <!-- 可以修改这里的文字来更改首页大标题 -->
         <transition name="fade-up">
           <div v-if="titleVisible" class="hero-title-wrapper">
-            <div class="hero-emblem" aria-hidden="true">
-              <img src="/images/hero-ai-emblem.png" alt="" />
-            </div>
             <h1 class="hero-title">
               <span class="title-line">{{ t('hero.title1') }}</span>
               <span class="title-line">{{ t('hero.title2') }}</span>
@@ -169,26 +166,6 @@ onMounted(() => {
 }
 
 /* ========== 标题上方 AI 徽章 ========== */
-.hero-emblem {
-  width: 118px;
-  height: 84px;
-  margin-bottom: var(--space-lg);
-  border: 1px solid rgba(255, 107, 43, 0.24);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background: rgba(12, 12, 12, 0.72);
-  box-shadow:
-    0 0 36px rgba(255, 107, 43, 0.14),
-    inset 0 0 20px rgba(255, 107, 43, 0.08);
-}
-
-.hero-emblem img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 54%;
-}
-
 /* ========== 大标题样式 ========== */
 .hero-title {
   display: flex;
@@ -216,6 +193,7 @@ onMounted(() => {
   color: var(--color-text-secondary);
   line-height: 1.7;
   max-width: 540px;                /* 限制最大宽度，提高可读性 */
+  min-height: 3.4em;
 }
 
 /* ========== CTA按钮区域 ========== */
@@ -231,6 +209,9 @@ onMounted(() => {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 168px;
+  min-height: 58px;
   padding: var(--space-md) var(--space-xl);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
@@ -275,6 +256,9 @@ onMounted(() => {
 .btn-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-width: 168px;
+  min-height: 58px;
   padding: var(--space-md) var(--space-xl);
   font-family: var(--font-mono);
   font-size: var(--text-sm);

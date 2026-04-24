@@ -473,6 +473,7 @@ const setFilter = (id) => {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 1.5px;
+  width: 168px;
   padding: 6px 14px;
   border: 1px solid transparent;
   border-radius: 2px;
@@ -480,6 +481,8 @@ const setFilter = (id) => {
   background: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .filter-btn:hover {
@@ -551,6 +554,8 @@ const setFilter = (id) => {
   border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
+  height: 470px;
+  min-height: 470px;
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
@@ -638,6 +643,7 @@ const setFilter = (id) => {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
+  min-height: 34px;
 }
 
 .card-name {
@@ -711,6 +717,9 @@ const setFilter = (id) => {
   color: var(--color-text-secondary);
   line-height: 1.7;
   flex: 1;
+  min-height: 88px;
+  max-height: 96px;
+  overflow: hidden;
 }
 
 /* 底部操作行：左查看链接 + 右构建版本 */
@@ -732,6 +741,7 @@ const setFilter = (id) => {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 130px;
   transition: gap 0.2s ease, opacity 0.2s;
 }
 

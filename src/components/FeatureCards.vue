@@ -125,6 +125,8 @@ onMounted(() => {
   border: 1px solid var(--color-border);  /* 极淡边框 */
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
+  height: 300px;
+  min-height: 300px;
   overflow: hidden;
   transition: all var(--transition-base);
   opacity: 0;                             /* 初始隐藏 */
@@ -203,6 +205,9 @@ onMounted(() => {
   letter-spacing: 1px;
   color: var(--color-text-primary);
   margin-bottom: var(--space-md);
+  min-height: 2.6em;
+  display: flex;
+  align-items: flex-start;
 }
 
 /* ========== 卡片描述 ========== */
@@ -211,6 +216,9 @@ onMounted(() => {
   color: var(--color-text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-xl);
+  min-height: 5.1em;
+  max-height: 5.1em;
+  overflow: hidden;
 }
 
 /* ========== 响应式 ========== */

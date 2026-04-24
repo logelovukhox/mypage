@@ -161,9 +161,10 @@ onUnmounted(() => {
 
 /* 导航栏内部布局 - 三栏（Logo | 链接 | 按钮） */
 .navbar-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(130px, 220px) minmax(0, 1fr) minmax(180px, 220px);
   align-items: center;
-  justify-content: space-between;
+  gap: var(--space-lg);
 }
 
 /* ========== Logo样式 ========== */
@@ -173,6 +174,7 @@ onUnmounted(() => {
   font-weight: 700;
   letter-spacing: 1px;
   transition: opacity var(--transition-fast);
+  justify-self: start;
 }
 
 .logo:hover {
@@ -190,7 +192,8 @@ onUnmounted(() => {
 /* ========== 桌面端导航链接 ========== */
 .nav-links {
   display: flex;
-  gap: var(--space-2xl);           /* 链接间距 */
+  justify-self: center;
+  gap: clamp(1.5rem, 3vw, 3.5rem); /* 链接间距 */
 }
 
 .nav-link {
@@ -201,7 +204,12 @@ onUnmounted(() => {
   color: var(--color-text-secondary); /* 默认灰色 */
   transition: color var(--transition-fast);
   position: relative;
+  display: inline-flex;
+  justify-content: center;
+  min-width: 112px;
   padding-bottom: 4px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* 导航链接底部下划线动画 - 默认宽度为0 */
@@ -231,7 +239,10 @@ onUnmounted(() => {
 .nav-actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--space-md);
+  justify-self: end;
+  min-width: 180px;
 }
 
 .lang-toggle {
@@ -239,8 +250,8 @@ onUnmounted(() => {
   background: transparent;
   border: 0;
   border-radius: var(--radius-full);
-  width: 34px;
-  height: 34px;
+  width: 46px;
+  height: 46px;
   padding: 0;
   cursor: pointer;
   display: inline-flex;
@@ -255,8 +266,8 @@ onUnmounted(() => {
 }
 
 .lang-toggle svg {
-  width: 19px;
-  height: 19px;
+  width: 25px;
+  height: 25px;
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
@@ -266,15 +277,22 @@ onUnmounted(() => {
 
 /* ========== 联系按钮 ========== */
 .contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   font-weight: 600;
   letter-spacing: 1px;
+  min-width: 112px;
+  min-height: 48px;
   padding: var(--space-sm) var(--space-lg);
   border: 1px solid var(--color-text-secondary); /* 灰色边框 */
   border-radius: var(--radius-sm);
   color: var(--color-text-primary);
   transition: all var(--transition-base);
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* 联系按钮悬停 - 边框变橙 + 橙色背景 */
@@ -390,6 +408,15 @@ onUnmounted(() => {
 /* ========== 响应式 ========== */
 /* 小于768px（手机/平板）时隐藏桌面导航，显示汉堡菜单 */
 @media (max-width: 768px) {
+  .navbar-inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-actions {
+    min-width: auto;
+  }
+
   .nav-links,
   .contact-btn {
     display: none;                 /* 隐藏桌面端导航和联系按钮 */

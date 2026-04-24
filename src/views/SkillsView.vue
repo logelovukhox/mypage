@@ -4,6 +4,48 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
+const agentSkills = [
+  {
+    title: 'Agent 架构设计',
+    desc: '将复杂目标拆成 Planner、Executor、Reviewer 等角色，设计状态、记忆和任务边界。',
+    tags: ['规划', '记忆', '状态机']
+  },
+  {
+    title: '工具调用系统',
+    desc: '把 API、数据库、浏览器和文件系统封装为可控工具，处理参数校验、权限和失败重试。',
+    tags: ['Tool Calling', 'JSON Schema', '权限']
+  },
+  {
+    title: 'RAG 检索增强',
+    desc: '构建文档切片、向量召回、重排和引用链路，让回答能回到可验证资料。',
+    tags: ['Embedding', 'Vector DB', 'Rerank']
+  },
+  {
+    title: '多智能体协作',
+    desc: '设计 Agent 间消息协议、任务交接和冲突处理，避免重复工作和无效循环。',
+    tags: ['Supervisor', 'Worker', 'Review']
+  },
+  {
+    title: '自动化工作流',
+    desc: '把长任务拆入队列、回调和人工确认节点，适配异步执行与生产级观测。',
+    tags: ['Workflow', 'Queue', 'HITL']
+  },
+  {
+    title: '评测与安全',
+    desc: '建立提示词回归集、工具调用日志、幻觉检查和越权防护，持续验证行为质量。',
+    tags: ['Eval', 'Guardrail', 'Trace']
+  }
+]
+
+const pipelineSteps = [
+  '用户目标解析',
+  '任务规划',
+  '检索上下文',
+  '工具调用',
+  '结果校验',
+  '结构化输出'
+]
+
 const canvasRef = ref(null)
 let animationFrameId = null
 
@@ -138,22 +180,35 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="page-content container relative-content">
-      <div class="coming-soon">
-        <div class="terminal-window glass-card">
-          <div class="terminal-header glass-header">
-            <span class="terminal-dot red"></span>
-            <span class="terminal-dot yellow"></span>
-            <span class="terminal-dot green"></span>
-            <span class="terminal-title">skills.sh</span>
-          </div>
-          <div class="terminal-body">
-            <p class="terminal-line"><span class="prompt">$</span> scanning skill modules...</p>
-            <p class="terminal-line"><span class="prompt">$</span> <span class="text-accent">MANIFESTO_STATUS: COMPILING</span></p>
-            <p class="terminal-line"><span class="prompt">$</span> This section is currently under construction.</p>
-            <p class="terminal-line blink"><span class="prompt">$</span> <span class="cursor">█</span></p>
+      <section class="agent-overview">
+        <div class="overview-copy">
+          <span class="eyebrow">AI AGENT STACK</span>
+          <h2>从模型能力到可执行系统</h2>
+          <p>
+            我关注的不只是调用模型，而是把模型、工具、知识库和工作流组合成稳定可控的智能体系统。
+          </p>
+        </div>
+
+        <div class="pipeline-card glass-card">
+          <div class="pipeline-title">Agent 执行链路</div>
+          <div class="pipeline-steps">
+            <span v-for="step in pipelineSteps" :key="step" class="pipeline-step">{{ step }}</span>
           </div>
         </div>
-      </div>
+      </section>
+
+      <section class="skill-grid" aria-label="AI and agent skills">
+        <article v-for="skill in agentSkills" :key="skill.title" class="skill-card glass-card">
+          <div class="skill-card-top">
+            <span class="skill-index">AI</span>
+            <h3>{{ skill.title }}</h3>
+          </div>
+          <p>{{ skill.desc }}</p>
+          <div class="skill-tags">
+            <span v-for="tag in skill.tags" :key="tag">{{ tag }}</span>
+          </div>
+        </article>
+      </section>
     </div>
   </div>
 </template>
@@ -209,18 +264,13 @@ onBeforeUnmount(() => {
 
 .page-content {
   padding: var(--space-4xl) var(--space-xl);
-}
-
-.coming-soon {
   display: flex;
-  justify-content: center;
-  padding: var(--space-3xl) 0;
+  flex-direction: column;
+  gap: var(--space-3xl);
 }
 
-/* 玻璃态终端卡片 */
 .glass-card {
   width: 100%;
-  max-width: 600px;
   background: rgba(15, 15, 15, 0.5) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -267,44 +317,158 @@ onBeforeUnmount(() => {
   100% { left: 200%; }
 }
 
-.glass-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) var(--space-lg);
-  background: rgba(255, 107, 43, 0.04) !important;
-  border-bottom: 1px solid rgba(255, 107, 43, 0.15) !important;
+.agent-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+  gap: var(--space-xl);
+  align-items: stretch;
 }
 
-.terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
-.terminal-dot.red    { background: #ff5f57; }
-.terminal-dot.yellow { background: #ffbd2e; }
-.terminal-dot.green  { background: #28c840; }
-.terminal-title { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); margin-left: var(--space-md); }
-
-.terminal-body {
-  padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
+.overview-copy {
+  min-height: 260px;
+  padding: var(--space-2xl);
+  border-left: 2px solid var(--color-accent);
+  background: linear-gradient(90deg, rgba(255, 107, 43, 0.08), transparent 70%);
 }
 
-.terminal-line {
+.eyebrow,
+.pipeline-title,
+.skill-index,
+.skill-tags span {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  letter-spacing: 1.5px;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  margin-bottom: var(--space-md);
+}
+
+.overview-copy h2 {
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: var(--space-lg);
+}
+
+.overview-copy p {
+  max-width: 560px;
   color: var(--color-text-secondary);
   line-height: 1.8;
 }
 
-.prompt  { color: var(--color-accent); margin-right: var(--space-sm); }
-.cursor  { animation: pulse 1s ease-in-out infinite; }
-.blink   { animation: fadeIn 1s ease infinite alternate; }
+.pipeline-card {
+  min-height: 260px;
+  padding: var(--space-2xl);
+}
+
+.pipeline-title {
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  margin-bottom: var(--space-xl);
+}
+
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.pipeline-step {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-md);
+  border: 1px solid rgba(255, 107, 43, 0.18);
+  background: rgba(255, 107, 43, 0.05);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl);
+}
+
+.skill-card {
+  min-height: 310px;
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.skill-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-height: 104px;
+}
+
+.skill-index {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  border: 1px solid rgba(255, 107, 43, 0.32);
+  background: rgba(255, 107, 43, 0.08);
+}
+
+.skill-card h3 {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  line-height: 1.35;
+}
+
+.skill-card p {
+  min-height: 92px;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  font-size: var(--text-sm);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: auto;
+}
+
+.skill-tags span {
+  min-width: 92px;
+  text-align: center;
+  color: var(--color-accent);
+  font-size: 11px;
+  border: 1px solid rgba(255, 107, 43, 0.2);
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.24);
+}
 
 /* 响应式 */
+@media (max-width: 1100px) {
+  .agent-overview {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .page-hero  { padding: 100px 0 40px; }
   .page-content { padding: var(--space-2xl) var(--space-md); }
   .page-desc  { font-size: var(--text-base); }
-  .terminal-body { padding: var(--space-md); }
+  .agent-overview,
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+  .pipeline-steps {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
