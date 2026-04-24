@@ -10,7 +10,6 @@ const messages = {
       contact: 'CONTACT'
     },
     hero: {
-      status: 'SYSTEM.STATUS: ACTIVE',
       title1: 'BUILDING THE',
       title2: 'FUTURE OF',
       titleAccent: 'COMPUTE',
@@ -18,8 +17,7 @@ const messages = {
       subtitleAccent: 'AI-driven systems',
       subtitleEnd: 'and high-precision digital infrastructure.',
       initSequence: 'INIT_SEQUENCE',
-      viewManifesto: 'VIEW_MANIFESTO',
-      currentProject: 'CURRENT PROJECT'
+      viewManifesto: 'VIEW_MANIFESTO'
     },
     features: {
       card1: {
@@ -33,8 +31,8 @@ const messages = {
         tag: 'MODULE.25: UC-68'
       },
       card3: {
-        title: 'LOW-LATENCY SYSTEMS',
-        desc: 'High performance C++ and Rust implementations for real-time data processing and distributed ledger technology.',
+        title: 'C++ TOOLING',
+        desc: 'Building fast local tools in C++ for log analysis, file indexing, and workflow automation with low memory overhead.',
         tag: 'MODULE.13: 16:66'
       }
     },
@@ -154,7 +152,6 @@ const messages = {
       contact: '联系我'
     },
     hero: {
-      status: '系统状态: 运行中',
       title1: '构建计算与',
       title2: '数字架构的',
       titleAccent: '未来',
@@ -162,8 +159,7 @@ const messages = {
       subtitleAccent: 'AI 驱动系统',
       subtitleEnd: '和高精度数字基础设施。',
       initSequence: '启动序列',
-      viewManifesto: '查看宣言',
-      currentProject: '当前项目'
+      viewManifesto: '查看宣言'
     },
     features: {
       card1: {
@@ -177,8 +173,8 @@ const messages = {
         tag: '模块.25: UC-68'
       },
       card3: {
-        title: '低延迟系统',
-        desc: '采用高性能 C++ 和 Rust 实现实时数据处理与分布式账本技术。',
+        title: 'C++ 工具开发',
+        desc: '用 C++ 构建日志分析、文件索引和本地自动化工具，重点关注启动速度与低内存占用。',
         tag: '模块.13: 16:66'
       }
     },

@@ -83,9 +83,14 @@ onUnmounted(() => {
       <!-- 联系按钮 - 跳转到联系页面 -->
       <div class="nav-actions">
         <button class="lang-toggle" @click="toggleLanguage" :aria-label="locale === 'en' ? '切换到中文' : 'Switch to English'">
-          <span class="lang-current">{{ locale === 'en' ? 'EN' : '中' }}</span>
-          <span class="lang-divider">/</span>
-          <span class="lang-next">{{ locale === 'en' ? '中' : 'EN' }}</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 5h10" />
+            <path d="M9 3v2" />
+            <path d="M6 9c1.8 3 4.6 5.1 8 6" />
+            <path d="M13 5c-.8 4.5-3 7.8-7 10" />
+            <path d="M16 19l3-7 3 7" />
+            <path d="M17.1 16.5h3.8" />
+          </svg>
         </button>
         <router-link to="/contact" class="contact-btn" id="contact-btn">
           {{ t('nav.contact') }}<span class="contact-code"></span>
@@ -230,35 +235,33 @@ onUnmounted(() => {
 }
 
 .lang-toggle {
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-  font-weight: 600;
   color: var(--color-text-muted);
   background: transparent;
   border: 0;
-  border-radius: var(--radius-sm);
-  padding: 6px 2px;
+  border-radius: var(--radius-full);
+  width: 34px;
+  height: 34px;
+  padding: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  transition: color var(--transition-base), opacity var(--transition-base);
+  justify-content: center;
+  transition: color var(--transition-base), background var(--transition-base);
 }
 
 .lang-toggle:hover {
   color: var(--color-accent);
+  background: rgba(255, 107, 43, 0.08);
 }
 
-.lang-current {
-  color: var(--color-text-secondary);
-}
-
-.lang-divider {
-  color: var(--color-border-accent);
-}
-
-.lang-next {
-  color: inherit;
+.lang-toggle svg {
+  width: 19px;
+  height: 19px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 /* ========== 联系按钮 ========== */

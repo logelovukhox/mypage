@@ -1,13 +1,12 @@
 <!--
   HeroSection.vue - 首页英雄区组件（首屏大图区域）
   这是访客进入网站后看到的第一个区域，包含：
-  1. 系统状态标签（SYSTEM.STATUS: ACTIVE）
+  1. AI 芯片视觉徽章
   2. 大标题（BUILDING THE FUTURE OF COMPUTE.）
   3. 副标题描述
   4. CTA行动按钮（INIT_SEQUENCE + VIEW_MANIFESTO）
   5. 右侧芯片图片（带浮动动画）
-  6. 项目进度卡片（带数字动画）
-  7. 底部电路线SVG装饰
+  6. 底部电路线SVG装饰
 -->
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -17,42 +16,15 @@ const { t } = useI18n()
 
 // ===== 动画控制变量 =====
 // 这些变量控制各元素的显示/隐藏，配合 v-if + transition 实现依次入场动画
-const statusVisible = ref(false)    // 系统状态标签是否显示
 const titleVisible = ref(false)     // 大标题是否显示
 const subtitleVisible = ref(false)  // 副标题是否显示
 const ctaVisible = ref(false)       // CTA按钮是否显示
-const progressValue1 = ref(0)       // 第一个进度条的当前值（目标：98%）
-const progressValue2 = ref(0)       // 第二个进度条的当前值（目标：68%）
 
 // 组件挂载后 - 按时间顺序依次显示各元素
 onMounted(() => {
-  // 阶梯式延迟显示，营造逐步"启动"的效果
-  setTimeout(() => { statusVisible.value = true }, 300)   // 0.3秒后显示状态标签
-  setTimeout(() => { titleVisible.value = true }, 600)    // 0.6秒后显示大标题
-  setTimeout(() => { subtitleVisible.value = true }, 1000) // 1秒后显示副标题
-  setTimeout(() => { ctaVisible.value = true }, 1300)     // 1.3秒后显示CTA按钮
-
-  // 1.5秒后开始第一个进度条动画（每20ms增加2%，到98%停止）
-  setTimeout(() => {
-    const interval1 = setInterval(() => {
-      if (progressValue1.value >= 98) {
-        clearInterval(interval1)
-        return
-      }
-      progressValue1.value += 2
-    }, 20)
-  }, 1500)
-
-  // 1.8秒后开始第二个进度条动画（每25ms增加2%，到68%停止）
-  setTimeout(() => {
-    const interval2 = setInterval(() => {
-      if (progressValue2.value >= 68) {
-        clearInterval(interval2)
-        return
-      }
-      progressValue2.value += 2
-    }, 25)
-  }, 1800)
+  setTimeout(() => { titleVisible.value = true }, 300)
+  setTimeout(() => { subtitleVisible.value = true }, 700)
+  setTimeout(() => { ctaVisible.value = true }, 1000)
 })
 </script>
 
@@ -67,18 +39,13 @@ onMounted(() => {
     <div class="hero-content container">
       <!-- ===== 左侧内容 ===== -->
       <div class="hero-left">
-        <!-- 系统状态标签 - 带呼吸灯的"SYSTEM.STATUS: ACTIVE" -->
-        <transition name="fade-slide">
-          <div v-if="statusVisible" class="system-status">
-            <span class="status-dot"></span>
-            <span class="status-text">{{ t('hero.status') }}</span>
-          </div>
-        </transition>
-
         <!-- 主标题 - "BUILDING THE FUTURE OF COMPUTE." -->
         <!-- 可以修改这里的文字来更改首页大标题 -->
         <transition name="fade-up">
           <div v-if="titleVisible" class="hero-title-wrapper">
+            <div class="hero-emblem" aria-hidden="true">
+              <img src="/images/hero-ai-emblem.png" alt="" />
+            </div>
             <h1 class="hero-title">
               <span class="title-line">{{ t('hero.title1') }}</span>
               <span class="title-line">{{ t('hero.title2') }}</span>
@@ -125,32 +92,6 @@ onMounted(() => {
           />
           <!-- 图片背后的橙色发光效果 -->
           <div class="image-glow"></div>
-        </div>
-
-        <!-- 项目进度卡片 - 显示在图片右侧 -->
-        <div class="progress-cards">
-          <!-- 第一个进度卡片 - 可修改项目名称和目标百分比 -->
-          <div class="progress-card">
-            <span class="progress-label">{{ t('hero.currentProject') }}</span>
-            <div class="progress-info">
-              <span class="progress-name">UI_TELEOSYS</span>
-              <span class="progress-value">{{ progressValue1 }}%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" :style="{ width: progressValue1 + '%' }"></div>
-            </div>
-          </div>
-          <!-- 第二个进度卡片 -->
-          <div class="progress-card">
-            <span class="progress-label">{{ t('hero.currentProject') }}</span>
-            <div class="progress-info">
-              <span class="progress-name">PTSL_35.6BK...</span>
-              <span class="progress-value">{{ progressValue2 }}%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill fill-secondary" :style="{ width: progressValue2 + '%' }"></div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -227,29 +168,25 @@ onMounted(() => {
   gap: var(--space-xl);
 }
 
-/* ========== 系统状态标签 ========== */
-.system-status {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-accent);
-  letter-spacing: 2px;
+/* ========== 标题上方 AI 徽章 ========== */
+.hero-emblem {
+  width: 118px;
+  height: 84px;
+  margin-bottom: var(--space-lg);
+  border: 1px solid rgba(255, 107, 43, 0.24);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(12, 12, 12, 0.72);
+  box-shadow:
+    0 0 36px rgba(255, 107, 43, 0.14),
+    inset 0 0 20px rgba(255, 107, 43, 0.08);
 }
 
-/* 状态指示灯 - 带脉冲动画和发光效果 */
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent);
-  border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite; /* 呼吸闪烁 */
-  box-shadow: 0 0 10px var(--color-accent-glow); /* 发光 */
-}
-
-.status-text {
-  text-transform: uppercase;
+.hero-emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
 }
 
 /* ========== 大标题样式 ========== */
@@ -398,84 +335,6 @@ onMounted(() => {
   z-index: -1;
 }
 
-/* ========== 进度卡片 ========== */
-/* 定位在图片右侧偏上的位置 */
-.progress-cards {
-  position: absolute;
-  top: 15%;
-  right: -10%;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-  width: 280px;
-}
-
-/* 单个进度卡片 */
-.progress-card {
-  background: rgba(15, 15, 15, 0.8);  /* 半透明深色 */
-  backdrop-filter: blur(10px);         /* 毛玻璃效果 */
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-lg);
-  animation: slideInRight 0.8s ease-out forwards; /* 从右滑入 */
-}
-
-/* 进度卡片标签 "CURRENT PROJECT" */
-.progress-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--color-accent);
-  letter-spacing: 2px;
-  display: block;
-  margin-bottom: var(--space-md);
-}
-
-/* 项目名称和百分比的横向布局 */
-.progress-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--space-sm);
-}
-
-/* 项目名称 */
-.progress-name {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  letter-spacing: 1px;
-}
-
-/* 百分比数值 */
-.progress-value {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-}
-
-/* 进度条背景 */
-.progress-bar {
-  width: 100%;
-  height: 3px;
-  background: var(--color-border);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-/* 进度条填充部分 - 宽度由JS动态控制 */
-.progress-fill {
-  height: 100%;
-  background: var(--color-accent);         /* 橙色 */
-  border-radius: var(--radius-full);
-  transition: width 0.3s ease;
-  box-shadow: 0 0 10px var(--color-accent-glow); /* 发光效果 */
-}
-
-/* 第二个进度条用浅橙色 */
-.progress-fill.fill-secondary {
-  background: var(--color-accent-light);
-}
-
 /* ========== 底部电路线装饰 ========== */
 .circuit-lines {
   position: absolute;
@@ -486,16 +345,6 @@ onMounted(() => {
 }
 
 /* ========== 入场过渡动画 ========== */
-/* 从左侧滑入淡入（用于系统状态标签） */
-.fade-slide-enter-active {
-  transition: all 0.6s ease-out;
-}
-.fade-slide-enter-from {
-  opacity: 0;
-  transform: translateX(-20px);
-}
-
-/* 从下方上升淡入（用于标题、副标题、按钮） */
 .fade-up-enter-active {
   transition: all 0.8s ease-out;
 }
@@ -516,10 +365,6 @@ onMounted(() => {
     align-items: center;         /* 居中对齐 */
   }
 
-  .system-status {
-    justify-content: center;
-  }
-
   .hero-subtitle {
     margin: 0 auto;
   }
@@ -535,16 +380,6 @@ onMounted(() => {
 
   .hero-image-wrapper {
     max-width: 350px;
-  }
-
-  /* 进度卡片改为相对定位（不再绝对定位在图片旁） */
-  .progress-cards {
-    position: relative;
-    top: auto;
-    right: auto;
-    width: 100%;
-    max-width: 350px;
-    margin-top: var(--space-xl);
   }
 }
 
